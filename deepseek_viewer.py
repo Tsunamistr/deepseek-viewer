@@ -154,7 +154,12 @@ class App:
         self.think_var = tk.BooleanVar(value=False)
         ttk.Checkbutton(
             bar, text="导出/显示思考过程", variable=self.think_var
-        ).pack(side=tk.LEFT)
+        ).pack(side=tk.LEFT, padx=(6, 0))
+        self.newest_first = tk.BooleanVar(value=True)
+        ttk.Checkbutton(
+            bar, text="最新在上", variable=self.newest_first,
+            command=self.apply_filter,
+        ).pack(side=tk.LEFT, padx=(6, 0))
 
         paned = ttk.PanedWindow(self.root, orient=tk.HORIZONTAL)
         paned.pack(fill=tk.BOTH, expand=True, padx=8, pady=4)
@@ -261,6 +266,10 @@ class App:
             ]
         else:
             self.filtered = list(self.index)
+        if self.newest_first.get():
+            self.filtered.sort(
+                key=lambda e: e.get("inserted_at") or "", reverse=True
+            )
         self.listbox.delete(0, tk.END)
         for e in self.filtered:
             self.listbox.insert(tk.END, f"[{fmt_ts(e.get('inserted_at'))}] {e.get('title')}")
