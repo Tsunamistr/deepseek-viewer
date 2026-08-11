@@ -2,6 +2,20 @@
 
 一个用于浏览和导出 DeepSeek 官方导出的 `conversations.json` 对话文件的桌面工具（Python + Tkinter）。
 
+- **纯标准库**：仅使用 Python 标准库，无第三方依赖。
+- **MIT License** 开源。
+
+## 目录结构
+
+```
+deepseek-viewer/
+├── deepseek_viewer.py   # 主程序（GUI）
+├── README.md            # 本说明文档
+├── requirements.txt     # 依赖声明（当前无第三方依赖）
+├── LICENSE              # MIT 许可证
+└── .gitignore
+```
+
 ## 功能
 
 - **懒加载解析**：启动时只建立轻量索引（标题、ID、时间、字节偏移），选中的对话才按需切片解析，内存占用低，适合大文件。
@@ -11,7 +25,17 @@
 
 ## 环境要求
 
-- Python 3.8+（含 tkinter，官方 Windows 安装包默认自带）
+- Python 3.8+
+- tkinter（官方 Windows 安装包默认自带，无需额外安装）
+
+## 安装
+
+```bash
+git clone https://github.com/Tsunamistr/deepseek-viewer.git
+cd deepseek-viewer
+# 当前无第三方依赖，如未来引入依赖可执行：
+# pip install -r requirements.txt
+```
 
 ## 使用方式
 
@@ -86,3 +110,7 @@ python deepseek_viewer.py
 - 索引阶段使用标准库 `json.JSONDecoder.raw_decode` 逐条切分顶层对话对象，只保留轻量字段，避免一次性完整解析大文件。
 - 查看 / 导出时按字节偏移切片，仅解析当前选中的对话。
 - 索引在后台线程构建，界面不卡顿，带进度条提示。
+
+## License
+
+[MIT](LICENSE) © Tsunamistr

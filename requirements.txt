@@ -1,0 +1,6 @@
+# 本项目仅使用 Python 标准库，无第三方依赖。
+# 运行时需确保 Python 环境包含 tkinter（官方 Windows 安装包默认自带）。
+#
+# 若需要声明式环境，可使用：
+#   pip install -r requirements.txt
+# 该文件目前为空占位，便于后续按需补充依赖。
